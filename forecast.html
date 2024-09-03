@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}
+Forecasting
+{%endblock%}
+{% block content %}
+{% load static %}
+<div class="row mx-auto">
+    <div class="col-4">
+        {% if product is not None %}
+        <div style="width: 95%;" class="bg-dark text-white rounded-5 text-center">
+            <h2>{{product}}</h2>
+            <h4>Next {{duration}} Sale Forecast</h4>
+            <h2>{{sales}}</h2>
+        </div>
+        {% endif %}
+    </div>
+    <div class="card text-center col-4">
+        <div class="card-header bg-success text-white">
+            <h2>Demand Forecast</h2>
+        </div>
+        <div class="card-body">
+            <form action="" method="post">
+                {% csrf_token %}
+                <p>Select the Product Type
+                    <select name="product" class="form-select" aria-label="Default select example">
+                        <option selected value="All Products">--All Products--</option>
+                        <option value="Accessories">Accessories</option>
+                        <option value="Desktops">Desktops</option>
+                        <option value="Home Appliances">Home Appliances</option>
+                        <option value="Kitchen">Kitchen</option>
+                        <option value="Mobiles">Mobiles</option>
+                    </select>
+                </p>
+                <p> Duration
+                    <select name="duration" class="form-select" aria-label="Default select example">
+                        <option selected value="week">Next Week</option>
+                        <option value="month">Next Month</option>
+                        <option value="quarter">Next Quarter</option>
+                        <option value="year">Next Year</option>
+                    </select>
+                </p>
+                <div class="d-grid btn-xl-block">
+                    <input class="btn btn-success" type="submit" value="Forecast">
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div class="col-4"></div>
+</div>
+<div class="mx-auto text-center">
+    {% if product is not None %}
+    <h2>{{product}} - Comparision of last four {{duration}} and next {{duration}}</h2>
+    <img src="{% static 'images/' %}{{path}}" style="width: 95%;">
+    {% endif %}
+</div>
+{% endblock %}

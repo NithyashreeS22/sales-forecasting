@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}
+Home Page
+{%endblock%}
+{% block content %}
+{% load static %}
+<div class="card text-center col-9 mx-auto">
+    <div class="card-header bg-success text-white">
+        <h2>Forecast Demand for Given Duration</h2>
+    </div>
+    <div class="card-body">
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+                <option value="all">All Categories</option>
+                <option value="Mobiles">Mobiles</option>
+                <option value="Laptops">Laptops</option>
+                <option value="Desktops">Desktops</option>
+                <option value="Printers">Printers</option>
+                <option value="Televisions">Televisions</option>
+            </select>
+
+            <label for="products">Products:</label>
+            <select id="products" multiple name="product">
+            </select>
+            <label for="duration">Demand For:</label>
+            <select id="duration" name="duration">
+                <option value="365">Next Year</option>
+                <option value="180">Next Six Months</option>
+                <option value="90">Next Three Months</option>
+                <option value="30">Next Month</option>
+                <option value="7">Next Week</option>
+            </select>
+            <input type="submit" value="Analyse">
+        </form>
+    </div>
+</div>
+<br>
+{% if forecasted %}
+<div class="card col-9 mx-auto">
+    <div class="card-header text-center bg-success text-white">
+        <h2>Demand Forecasted for Next {{duration}} Days</h2>
+    </div>
+    <div class="card-body">
+        <form action="" method="post">
+            <table class="table table-dark table-striped">
+                <tr>
+                    <th>Product</th>
+                    <th>Demand</th>
+                </tr>
+                {% for key, value in forecasted.items %}
+                <tr>
+                    <td>{{key}}</td>
+                    <td>{{value}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+    </div>
+</div>
+{% endif %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Define the products for each category
+        const productsByCategory = {
+            Mobiles: ['iPhone 13', 'Samsung Galaxy S21', 'One Plus Nord 4', 'Redmi 13C', 'Realme Narzo N61'],
+            Laptops: ['ASUS Vivobook 15', 'Lenovo ThinkBook 15 G5', 'Dell Latitude Laptop 3380', 'Acer Aspire 7', 'HP Laptop 14'],
+            Desktops: ['Dell Optiplex', 'Lenovo ThinkCentre', 'HP EliteDesk 800 G2', 'Acer Veriton E220', 'HP All-in-One PC'],
+            Printers: ['Canon PIXMA E477', 'HP Deskjet 2331', 'HP Smart Tank 589', 'Epson Ecotank L3252', 'Brother DCP-T820DW'],
+            Televisions: ['Samsung 80 cm HD Ready Smart LED TV ', 'LG 80 cm HD Ready Smart LED TV', 'Acer 100 cm Advanced I Series', 'Sony Bravia 139 cm 4K Ultra HD', 'Sony BRAVIA 2 Series 108 cm']
+        };
+
+        const categoryDropdown = document.getElementById('category');
+        const productsDropdown = document.getElementById('products');
+
+        // Add an event listener to the category dropdown
+        categoryDropdown.addEventListener('change', function () {
+            // Clear the current options in the products dropdown
+            productsDropdown.innerHTML = '';
+
+            // Get the selected category
+            const selectedCategory = categoryDropdown.value;
+
+            // Check if the selected category has corresponding products
+            if (selectedCategory && productsByCategory[selectedCategory]) {
+                // Populate the products dropdown with the relevant products
+                productsByCategory[selectedCategory].forEach(function (product) {
+                    const option = document.createElement('option');
+                    //option.value = product.toLowerCase().replace(/\s+/g, '-');
+                    option.textContent = product;
+                    productsDropdown.appendChild(option);
+                });
+            }
+        });
+
+    });
+</script>
+
+{% endblock %}

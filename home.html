@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block title %}
+Home Page
+{%endblock%}
+{% block content %}
+{% load static %}
+<div>
+    <div class="blue-gradient-div mx-auto">
+        <h1 class="display-3">Demand Forecasting</h1>
+    </div>
+    <div class="col-11 mx-auto">
+        <p style="font-size: 18px;">Demand forecasting using Long Short-Term Memory (LSTM) is a sophisticated
+            application of artificial
+            intelligence (AI) in predicting future demand patterns for products or services. LSTM is a type of recurrent
+            neural network (RNN) that is well-suited for sequential data, making it particularly effective for
+            time-series forecasting tasks like demand prediction. Here's an overview of how LSTM is used in demand
+            forecasting:</p>
+        <div class="border border-3 border-dark">
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            <h5>Data Preparation</h5>
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse"
+                        data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">The first step involves gathering historical demand data, which
+                            typically includes information such as sales figures, customer orders, inventory levels, and
+                            external factors like economic indicators or seasonality. This data is preprocessed to
+                            remove noise, handle missing values, and normalize the features to ensure the LSTM model's
+                            effectiveness.
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                aria-controls="flush-collapseTwo">
+                                <h5> Sequence Formation</h5>
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">LSTM requires input data to be structured as sequences. In
+                                demand forecasting, these sequences could represent historical demand patterns over
+                                specific time intervals, such as days, weeks, or months. Each sequence consists of
+                                multiple time steps, with each step containing relevant features such as past sales,
+                                pricing information, promotions, and any other variables that could influence demand.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                aria-controls="flush-collapseThree">
+                                <h5>Model Training</h5>
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">The LSTM model is trained on the prepared historical data to
+                                learn the underlying patterns and relationships. During training, the model adjusts its
+                                parameters to minimize the difference between its predictions and the actual demand
+                                values. This iterative process involves forward propagation to make predictions and
+                                backward propagation to update the model's weights using gradient descent optimization
+                                techniques.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseFour" aria-expanded="false"
+                                aria-controls="flush-collapseFour">
+                                <h5> Hyperparameter Tuning</h5>
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFour" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">LSTM models have several hyperparameters that need to be tuned
+                                to achieve optimal performance. These include the number of LSTM layers, the number of
+                                memory cells within each layer, the learning rate, batch size, and dropout rate to
+                                prevent overfitting.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseFive" aria-expanded="false"
+                                aria-controls="flush-collapseFive">
+                                <h5>Validation and Testing</h5>
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFive" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Once the model is trained, it is evaluated using validation data
+                                to assess its performance. Common evaluation metrics for demand forecasting include Mean
+                                Absolute Error (MAE), Mean Squared Error (MSE), and Root Mean Squared Error (RMSE). The
+                                model's performance is further validated using unseen test data to ensure its
+                                generalization ability.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapsesix" aria-expanded="false"
+                                aria-controls="flush-collapsesix">
+                                <h5>Forecasting</h5>
+                            </button>
+                        </h2>
+                        <div id="flush-collapsesix" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">After validation, the trained LSTM model can be used to forecast
+                                future demand. By providing input sequences containing the most recent data, the model
+                                generates predictions for upcoming time periods. These forecasts enable businesses to
+                                anticipate demand fluctuations, optimize inventory management, allocate resources
+                                efficiently, and make informed decisions related to production, procurement, and
+                                marketing strategies.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+Login
+{%endblock%}
+{% block content %}
+<div class="card mx-auto text-center" style="width: 30rem;">
+  <div class="card-header bg-success text-white">
+    <h2>Login Page</h2>
+  </div>
+  <div class="card-body">
+    <form action="" method="post">
+      {% csrf_token %}
+      User Name
+      <p><input type="text" name="uname" /></p>
+      Password
+      <p><input type="password" name="pwd" id="" /> </p>
+      {% for message in messages %}
+      {{message}} <br>
+      {% endfor %}
+
+      <input type="submit" value="Login" />
+    </form>
+  </div>
+</div>
+{% endblock %}
